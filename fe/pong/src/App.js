@@ -4,7 +4,7 @@ import Ball from './Components/Ball.jsx'
 
 function App() {
 
-  const ROW_SIZE = 10;
+  const ROW_SIZE = 10; // should be sent to ball component as props
   const COL_SIZE = 20; // should be sent to ball component as props
   const board = [...Array(ROW_SIZE * COL_SIZE)];
 

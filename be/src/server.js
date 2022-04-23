@@ -1,9 +1,9 @@
 import express from 'express';
 import mysql from 'mysql';
-import {newUser} from './db_connection.js';
-import {newScore} from './db_connection.js'
+import { lastScore, newUser, highScore } from './db_connection.js';
+import { newScore } from './db_connection.js';
 import bodyParser from 'body-parser';
-import {nanoid} from 'nanoid';
+import { nanoid } from 'nanoid';
 import encryptPass from './middleware/passwords.js';
 
 const jsonParser = bodyParser.json();
@@ -22,10 +22,21 @@ app.post('/signup', jsonParser, (req, res) => {
     }
 });
 
-app.post('/addScore', jsonParser, (req,res) => {
-    console.log(req.body);
+app.post('/addScore', jsonParser, (req, res) => {
     newScore(req.body);
     res.send('done');
+});
+
+app.get('/lastScore/:id', jsonParser, (req, res) => {
+    lastScore(req.params.id, (result) => {
+        res.send(result);
+    });
+});
+
+app.get('/highScore/:id', (req, res) => {
+    highScore(req.params.id, (result) => {
+        res.send(result);
+    });
 });
 
 app.listen(PORT, () => {

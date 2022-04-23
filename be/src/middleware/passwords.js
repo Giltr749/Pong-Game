@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-import { newUser } from '../db_connection.js';
 
 const saltRounds = 10;
 

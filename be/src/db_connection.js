@@ -20,16 +20,23 @@ export function newUser(user) {
 
 export function newScore(score) {
     var insertScore = "INSERT INTO scores (nickname, score, date) VALUES ?";
-    console.log(score);
-    
-   
-
     var values = [[score.nickname, score.score, score.date]];
-
-    con.query(insertScore, [values], (err,res) =>{
+    con.query(insertScore, [values], (err, res) => {
         if (err) throw err;
         console.log('Score added');
     });
 }
 
-// export default {newUser, newScore};
+export function lastScore(id, callback) {
+    var getNickname = `SELECT * FROM scores WHERE nickname = (SELECT nickname FROM users WHERE id = '${id}') ORDER BY date DESC LIMIT 1`;
+    con.query(getNickname, (err, res) => {
+        return callback(res);
+    });
+}
+
+export function highScore(id, callback) {
+    var getNickname = `SELECT * FROM scores WHERE nickname = (SELECT nickname FROM users WHERE id = '${id}') ORDER BY score DESC LIMIT 1`;
+    con.query(getNickname, (err, res) => {
+        return callback(res);
+    });
+}

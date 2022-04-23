@@ -2,23 +2,3 @@
   box-sizing: border-box;
   margin: 0;
 }
-
-:root {
-  --ROW_SIZE: 20;
-  --COL_SIZE: 40;
-}
-
-.board {
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template: repeat(var(--ROW_SIZE), 1fr) / repeat(var(--COL_SIZE), 1fr);
-  color: white;
-  /* background-color: black; */
-}
-
-li {
-  background-color: black;
-  border: 1px solid white;
-  list-style: none;
-}

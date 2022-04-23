@@ -1,14 +1,10 @@
 import bcrypt from 'bcrypt';
+import { newUser } from '../db_connection.js';
 
 const saltRounds = 10;
 
-async function encryptPass(password) {
-    let toHash = password;
-    bcrypt.genSalt(saltRounds, (err, salt) => {
-        bcrypt.hash(toHash, salt, (err, hash) => {
-            console.log(hash);
-        });
-    });
+function encryptPass(password) {
+    return bcrypt.hashSync(password, saltRounds);
 }
 
 export default encryptPass;

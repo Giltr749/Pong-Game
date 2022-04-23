@@ -13,7 +13,7 @@ const PORT = 8080;
 app.post('/signup', jsonParser, (req, res) => {
     try {
         req.body.id = nanoid(5);
-        // encryptPass(req.body);
+        req.body.password = encryptPass(req.body.password);
         newUser(req.body);
         res.send('done');
     }

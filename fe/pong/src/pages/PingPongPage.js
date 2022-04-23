@@ -11,12 +11,21 @@ export default function PingPongPage() {
   const [positionY, setPositionY] = useState(50);
   const [deltaX, setDeltaX] = useState(0.5);
   const [deltaY, setDeltaY] = useState(0.5);
+  const [playerPaddlePosition, setPlayerPaddlePosition] = useState(50);
+
+  //   function movePlayer(e) {
+  //     let y = e.clientY;
+  //   }
 
   return (
     <div>
       <Score />
       <ComputerPaddle />
-      <PlayerPaddle />
+      <PlayerPaddle
+        playerPaddlePosition={playerPaddlePosition}
+        setPlayerPaddlePosition={setPlayerPaddlePosition}
+        // movePlayer={movePlayer}
+      />
       <Ball
         positionX={positionX}
         setPositionX={setPositionX}

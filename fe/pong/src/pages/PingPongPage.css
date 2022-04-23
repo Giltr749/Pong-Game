@@ -11,6 +11,8 @@
   --background-color: hsl(var(--hue), var(--saturation), 20%);
   --x: 50;
   --y: 50;
+  --position-player: 50;
+  --position-computer: 50;
 }
 
 body {
@@ -20,21 +22,20 @@ body {
 }
 
 .paddle {
-  --position: 50;
-
   position: absolute;
   background-color: var(--foreground-color);
-  top: calc(var(--position) * 1vh);
   transform: translateY(-50%);
   width: 1vh;
   height: 10vh;
 }
 
 .paddle.left {
+  top: calc(var(--position-computer) * 1vh);
   left: 1vw;
 }
 
 .paddle.right {
+  top: calc(var(--position-player) * 1vh);
   right: 1vw;
 }
 

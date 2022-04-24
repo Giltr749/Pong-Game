@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import "./Signup.css"
+import { Routes, Route, useNavigate } from "react-router-dom";
+import "./Signup.css";
 
 function Signup(props) {
   const [email, setEmail] = useState("");
@@ -9,6 +9,8 @@ function Signup(props) {
   const [first, setFirst] = useState("");
   const [last, setLast] = useState("");
   const [nick, setNick] = useState("");
+
+  let navigate = useNavigate();
 
   function handleClick() {
     let user = {};
@@ -23,6 +25,10 @@ function Signup(props) {
     } else {
       return false;
     }
+  }
+
+  function toLogin() {
+    navigate("/");
   }
 
   function isValid() {
@@ -49,7 +55,7 @@ function Signup(props) {
   }
 
   return (
-    <div className="signup-div">
+    <div className="signup-div" id="signup">
       <h2>Sign Up</h2>
       <label>Email*</label>
       <input
@@ -99,7 +105,12 @@ function Signup(props) {
       />
       <p>{handleClick === false ? "Invalid Input" : ""}</p>
       <button onClick={handleClick}>Submit</button>
-      <p>Already have a user? Login</p>
+      <p>
+        Already have a user?{" "}
+        <span onClick={toLogin} style={{ textDecoration: "underline" }}>
+          Login
+        </span>
+      </p>
     </div>
   );
 }

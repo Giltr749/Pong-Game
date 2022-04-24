@@ -39,7 +39,6 @@ export default function Ball({
   //   const interval = setInterval(() => {
   //     setX(setPositionX((positionX += deltaX)));
   //     setY(setPositionY((positionY += deltaY)));
-  //     // velocity -= 0.001;
   //     if (positionY > 99 || positionY < 1) {
   //       deltaY *= -1;
   //     } else if (positionX < 1 || positionX > 99) {

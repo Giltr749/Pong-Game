@@ -13,10 +13,6 @@ export default function PingPongPage() {
   const [deltaY, setDeltaY] = useState(0.5);
   const [playerPaddlePosition, setPlayerPaddlePosition] = useState(50);
 
-  //   function movePlayer(e) {
-  //     let y = e.clientY;
-  //   }
-
   return (
     <div>
       <Score />

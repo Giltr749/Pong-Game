@@ -19,16 +19,20 @@ export default function PlayerPaddle({
     );
   }
 
-  const handleMouse = (e) => {
-    setPaddle(setPlayerPaddlePosition(e));
-    console.log(e.clientY);
-    console.log(e.pageY);
-  };
-  console.log(playerPaddlePosition);
+  document.addEventListener("mousemove", (e) => {
+    //convert from px to vh
+    setPaddle(setPlayerPaddlePosition((e.y / window.innerHeight) * 100));
+  });
+
+  // const handleMouse = (e) => {
+  //   setPaddle(setPlayerPaddlePosition(e));
+  //   console.log(e.clientY);
+  // };
+  // console.log(playerPaddlePosition);
 
   return (
     <div>
-      <div className="paddle right" onMouseMove={handleMouse}></div>
+      <div className="paddle right"></div>
     </div>
   );
 }

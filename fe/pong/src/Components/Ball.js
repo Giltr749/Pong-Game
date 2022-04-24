@@ -95,7 +95,7 @@ export default function Ball({
         setX(xIncrease);
         setDeltaX(deltaX*-1);
       }
-      if (positionX >= 98.5 && positionX <= 98  && positionY < playerPaddlePosition+5 && positionY > playerPaddlePosition-5) {
+      if (positionX <= 98.5 && positionX >= 98  && positionY < playerPaddlePosition+5 && positionY > playerPaddlePosition-5) {
         console.log('bounce');
         let xDecrease = positionX - 1;
         setPositionX(xDecrease);

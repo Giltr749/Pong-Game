@@ -10,7 +10,7 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="/pong" element={<PingPongPage />} />
       </Routes> */}
-      <PingPongPage/>
+      
     </div>
   );
 }

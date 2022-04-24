@@ -1,6 +1,6 @@
 import express from 'express';
 import mysql from 'mysql';
-import { lastScore, newUser, highScore, login } from './db_connection.js';
+import { lastScore, newUser, highScore } from './db_connection.js';
 import { newScore } from './db_connection.js';
 import bodyParser from 'body-parser';
 import { nanoid } from 'nanoid';
@@ -21,7 +21,7 @@ app.post('/signup', jsonParser, (req, res) => {
         res.send('done');
     }
     catch (err) {
-        console.log('err');
+        res.senf(err);
     }
 });
 

@@ -24,8 +24,10 @@ export function newScore(score) {
     var insertScore = "INSERT INTO scores (nickname, score, date) VALUES ?";
     var values = [[score.nickname, score.score, score.date]];
     con.query(insertScore, [values], (err, res) => {
-        if (err) throw err;
-        console.log('Score added');
+        if (err)
+            throw err;
+        else
+            console.log('Score added');
     });
 }
 
@@ -43,13 +45,13 @@ export function highScore(id, callback) {
     });
 }
 
-export function login(user, callback) {
+// export function login(user, callback) {
 
-    const getUser = `SELECT * FROM users WHERE nickname ='${user.nickname}';`;
-    con.query(getUser, (err, res) => {
-        bcrypt.compareSync(user.password, res[0].password, (err, result) => {
-            console.log(result);    
-            callback(result);
-        });
-    });
-}
+//     const getUser = `SELECT * FROM users WHERE nickname ='${user.nickname}';`;
+//     con.query(getUser, (err, res) => {
+//         bcrypt.compareSync(user.password, res[0].password, (err, result) => {
+//             console.log(result);    
+//             callback(result);
+//         });
+//     });
+// }

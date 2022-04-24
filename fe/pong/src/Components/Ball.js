@@ -35,18 +35,18 @@ export default function Ball({
     document.documentElement.style.setProperty("--y", positionY);
   }
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setX(setPositionX((positionX += deltaX)));
-  //     setY(setPositionY((positionY += deltaY)));
-  //     if (positionY > 99 || positionY < 1) {
-  //       deltaY *= -1;
-  //     } else if (positionX < 1 || positionX > 99) {
-  //       deltaX *= -1;
-  //     }
-  //   }, 10);
-  //   return () => clearInterval(interval);
-  // }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setX(setPositionX((positionX += deltaX)));
+      setY(setPositionY((positionY += deltaY)));
+      if (positionY > 99 || positionY < 1) {
+        deltaY *= -1;
+      } else if (positionX < 1 || positionX > 99) {
+        deltaX *= -1;
+      }
+    }, 10);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div>

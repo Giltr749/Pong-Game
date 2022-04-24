@@ -6,10 +6,11 @@ import Home from "./pages/Home"
 export default function App() {
   return (
     <div>
-      <Routes>
+      {/* <Routes>
         <Route index element={<Home />} />
         <Route path="/pong" element={<PingPongPage />} />
-      </Routes>
+      </Routes> */}
+      <PingPongPage/>
     </div>
   );
 }

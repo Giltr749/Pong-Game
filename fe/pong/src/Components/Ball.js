@@ -14,6 +14,8 @@ export default function Ball({
   setComputerScore,
   playerScore,
   setPlayerScore,
+  playerPaddlePosition,
+  computerPaddlePosition,
   setPlayerPaddlePosition,
   setComputerPaddlePosition,
 }) {
@@ -32,7 +34,7 @@ export default function Ball({
 
   const reset = () => {
     setPositionX(50);
-    setPositionY(50);
+    setPositionY(80);
     setX(50);
     setY(50);
     setPlayerPaddlePosition(50);
@@ -56,10 +58,25 @@ export default function Ball({
       let posY = positionY + deltaY;
       setPositionY(posY);
       setY(posY);
+      
+      //===== TOP/BOTTOM BOUNCE =====//
+
       if (positionY > 99 || positionY < 1) {
+        if(positionY < 50) {
+          let yIncrease = positionY + 1;
+          setPositionY(yIncrease);
+          setY(yIncrease);
+        }
+        else if (positionY > 50) {
+          let yDecrease = positionY - 1;
+          setPositionY(yDecrease);
+          setY(yDecrease);
+        }
         setDeltaY(deltaY*-1);
-        setDeltaX(deltaX *-1);
       }
+
+      //===== SCORE =====//
+
       if (positionX < 1) {
         console.log("score");
         setComputerScore(computerScore + 1);
@@ -68,6 +85,24 @@ export default function Ball({
         let scoreIncrease = playerScore + 1
         setPlayerScore(scoreIncrease);
       }
+
+      //===== PADDLE HIT =====//
+
+      if (positionX >= 2 && positionX <= 2.5  && positionY < computerPaddlePosition+5 && positionY > computerPaddlePosition-5) {
+        console.log('bounce');
+        let xIncrease = positionX + 1;
+        setPositionX(xIncrease);
+        setX(xIncrease);
+        setDeltaX(deltaX*-1);
+      }
+      if (positionX >= 98.5 && positionX <= 98  && positionY < playerPaddlePosition+5 && positionY > playerPaddlePosition-5) {
+        console.log('bounce');
+        let xDecrease = positionX - 1;
+        setPositionX(xDecrease);
+        setX(xDecrease);
+        setDeltaX(deltaX*-1);
+      }
+
     }, 30);
     return () => clearInterval(interval);
   });

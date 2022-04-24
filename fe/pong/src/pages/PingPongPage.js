@@ -47,6 +47,8 @@ export default function PingPongPage() {
         setComputerScore={setComputerScore}
         playerScore={playerScore}
         setPlayerScore={setPlayerScore}
+        playerPaddlePosition={playerPaddlePosition}
+        computerPaddlePosition={computerPaddlePosition}
         setComputerPaddlePosition={setComputerPaddlePosition}
         setPlayerPaddlePosition={setPlayerPaddlePosition}
       />

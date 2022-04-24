@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Ball({
   positionX,
@@ -17,6 +17,9 @@ export default function Ball({
   setPlayerPaddlePosition,
   setComputerPaddlePosition,
 }) {
+
+  // const [test, setTest] = useState(playerScore);
+
   //getting current x variable
   useEffect(() => {
     const getX = getComputedStyle(document.documentElement).getPropertyValue(
@@ -28,8 +31,10 @@ export default function Ball({
   }, []);
 
   const reset = () => {
-    setPositionY(50);
     setPositionX(50);
+    setPositionY(50);
+    setX(50);
+    setY(50);
     setPlayerPaddlePosition(50);
     setComputerPaddlePosition(50);
   };
@@ -45,22 +50,31 @@ export default function Ball({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setX(setPositionX((positionX += deltaX)));
-      setY(setPositionY((positionY += deltaY)));
+      let posX = positionX + deltaX;
+      setPositionX(posX);
+      setX(posX);
+      let posY = positionY + deltaY;
+      setPositionY(posY);
+      setY(posY);
       if (positionY > 99 || positionY < 1) {
-        deltaY *= -1;
-      } else if (positionX < 1) {
-        setComputerScore((computerScore += 1));
-      } else if (positionX > 99) {
-        setPlayerScore((playerScore += 1));
+        setDeltaY(deltaY*-1);
+        setDeltaX(deltaX *-1);
       }
-    }, 10);
+      if (positionX < 1) {
+        console.log("score");
+        setComputerScore(computerScore + 1);
+      } else if (positionX > 99) {
+        console.log("score");
+        let scoreIncrease = playerScore + 1
+        setPlayerScore(scoreIncrease);
+      }
+    }, 30);
     return () => clearInterval(interval);
-  }, []);
+  });
 
   useEffect(() => {
     reset();
-  }, [playerScore]);
+  }, [playerScore, computerScore]);
 
   return (
     <div>

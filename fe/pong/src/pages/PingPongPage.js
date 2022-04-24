@@ -15,7 +15,8 @@ export default function PingPongPage() {
   const [computerPaddlePosition, setComputerPaddlePosition] = useState(50);
   const [playerScore, setPlayerScore] = useState(0);
   const [computerScore, setComputerScore] = useState(0);
-
+  // console.log(positionY);
+  // console.log(deltaY);
   return (
     <div>
       <Score

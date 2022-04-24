@@ -6,7 +6,7 @@ export default function Score({
   playerScore,
   setPlayerScore,
 }) {
-  console.log(playerScore);
+  // console.log(playerScore);
   return (
     <div className="score">
       <div className="computer-score">{computerScore}</div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "./Signup.css";
+import { Routes, Route } from "react-router-dom";
+import "./Signup.css"
 
 function Signup(props) {
   const [email, setEmail] = useState("");
@@ -49,6 +50,7 @@ function Signup(props) {
 
   return (
     <div className="signup-div">
+      <h2>Sign Up</h2>
       <label>Email*</label>
       <input
         type="email"
@@ -97,6 +99,7 @@ function Signup(props) {
       />
       <p>{handleClick === false ? "Invalid Input" : ""}</p>
       <button onClick={handleClick}>Submit</button>
+      <p>Already have a user? Login</p>
     </div>
   );
 }

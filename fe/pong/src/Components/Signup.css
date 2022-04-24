@@ -1,0 +1,12 @@
+.signup-div {
+    text-align: center;
+    align-items: center;
+    color:white;
+}
+
+.input {
+    width: 20%;
+    display: flex;
+    text-align: center;
+    margin: 1rem 0 1rem 40%;
+}

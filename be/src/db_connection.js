@@ -1,29 +1,44 @@
 import mysql from 'mysql';
+import bcrypt from 'bcrypt';
 
-var con = mysql.createConnection({
+
+export var con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'password',
     database: "Pong"
 });
 
-export function newUser(user) {
+export async function newUser(user, callback) {
 
-    var insertUser = "INSERT INTO users (id, email, password , fname, lname, nickname) VALUES ?";
-    var values = [[user.id, user.email, user.password, user.fname, user.lname, user.nickname]];
+    const getUser = `SELECT * FROM users WHERE nickname = '${user.nickname}'`;
 
-    con.query(insertUser, [values], (err, res) => {
-        if (err) throw err;
-        console.log(`User added`);
+    con.query(getUser, (err, res) => {
+        if (res.length > 0)
+            callback('User already exists');
+
+        else {
+            const insertUser = "INSERT INTO users (id, email, password , fname, lname, nickname) VALUES ?";
+            const values = [[user.id, user.email, user.password, user.fname, user.lname, user.nickname]];
+            con.query(insertUser, [values], (err, res) => {
+                if (err) throw (err);
+                callback('done');
+            }
+            );
+        }
     });
+
+
 }
 
 export function newScore(score) {
     var insertScore = "INSERT INTO scores (nickname, score, date) VALUES ?";
     var values = [[score.nickname, score.score, score.date]];
     con.query(insertScore, [values], (err, res) => {
-        if (err) throw err;
-        console.log('Score added');
+        if (err)
+            throw err;
+        else
+            console.log('Score added');
     });
 }
 
@@ -40,3 +55,14 @@ export function highScore(id, callback) {
         return callback(res);
     });
 }
+
+// export function login(user, callback) {
+
+//     const getUser = `SELECT * FROM users WHERE nickname ='${user.nickname}';`;
+//     con.query(getUser, (err, res) => {
+//         bcrypt.compareSync(user.password, res[0].password, (err, result) => {
+//             console.log(result);    
+//             callback(result);
+//         });
+//     });
+// }

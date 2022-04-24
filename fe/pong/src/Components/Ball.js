@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Ball({
   positionX,
@@ -101,6 +102,14 @@ export default function Ball({
         setPositionX(xDecrease);
         setX(xDecrease);
         setDeltaX(deltaX*-1);
+      }
+
+      //===== Game End =====//
+
+      let navigate = useNavigate();
+
+      if (computerScore >= 3) {
+        navigate('/')
       }
 
     }, 30);

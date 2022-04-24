@@ -2,7 +2,7 @@
   padding: 1rem 0;
   width: 40%;
   margin-left: 30%;
-  margin-top: 2rem;
+  margin-top: 1rem;
   text-align: center;
   align-items: center;
   color: white;
@@ -14,9 +14,9 @@
   width: 40%;
   display: flex;
   text-align: center;
-  margin: 1rem 0 1rem 30%;
+  margin: 0.5rem 0 0.5rem 30%;
 }
 
-#id {
-  overflow: visible;
+#signup {
+  overflow: auto;
 }

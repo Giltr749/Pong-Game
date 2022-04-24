@@ -18,7 +18,9 @@ export default function ComputerPaddle({
     );
   }
 
-  setPaddle(setComputerPaddlePosition(positionY));
+  useEffect(() => {
+    setPaddle(setComputerPaddlePosition(positionY));
+  });
 
   return (
     <div>

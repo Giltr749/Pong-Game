@@ -13,10 +13,17 @@ export default function PingPongPage() {
   const [deltaY, setDeltaY] = useState(0.5);
   const [playerPaddlePosition, setPlayerPaddlePosition] = useState(50);
   const [computerPaddlePosition, setComputerPaddlePosition] = useState(50);
+  const [playerScore, setPlayerScore] = useState(0);
+  const [computerScore, setComputerScore] = useState(0);
 
   return (
     <div>
-      <Score />
+      <Score
+        computerScore={computerScore}
+        setComputerScore={setComputerScore}
+        playerScore={playerScore}
+        setPlayerScore={setPlayerScore}
+      />
       <ComputerPaddle
         computerPaddlePosition={computerPaddlePosition}
         setComputerPaddlePosition={setComputerPaddlePosition}
@@ -35,6 +42,12 @@ export default function PingPongPage() {
         setDeltaY={setDeltaY}
         deltaX={deltaX}
         setDeltaX={setDeltaX}
+        computerScore={computerScore}
+        setComputerScore={setComputerScore}
+        playerScore={playerScore}
+        setPlayerScore={setPlayerScore}
+        setComputerPaddlePosition={setComputerPaddlePosition}
+        setPlayerPaddlePosition={setPlayerPaddlePosition}
       />
     </div>
   );

@@ -10,6 +10,12 @@ export default function Ball({
   setDeltaX,
   deltaY,
   setDeltaY,
+  computerScore,
+  setComputerScore,
+  playerScore,
+  setPlayerScore,
+  setPlayerPaddlePosition,
+  setComputerPaddlePosition,
 }) {
   //getting current x variable
   useEffect(() => {
@@ -19,12 +25,14 @@ export default function Ball({
     const getY = getComputedStyle(document.documentElement).getPropertyValue(
       "--y"
     );
-    // console.log(getX);
-    // console.log(getY);
   }, []);
 
-  // console.log(positionX);
-  // console.log(positionY);
+  const reset = () => {
+    setPositionY(50);
+    setPositionX(50);
+    setPlayerPaddlePosition(50);
+    setComputerPaddlePosition(50);
+  };
 
   //moving the ball on the x axis
   function setX(position) {
@@ -41,12 +49,18 @@ export default function Ball({
       setY(setPositionY((positionY += deltaY)));
       if (positionY > 99 || positionY < 1) {
         deltaY *= -1;
-      } else if (positionX < 1 || positionX > 99) {
-        deltaX *= -1;
+      } else if (positionX < 1) {
+        setComputerScore((computerScore += 1));
+      } else if (positionX > 99) {
+        setPlayerScore((playerScore += 1));
       }
     }, 10);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    reset();
+  }, [playerScore]);
 
   return (
     <div>

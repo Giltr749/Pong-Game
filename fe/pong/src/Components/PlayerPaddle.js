@@ -18,8 +18,10 @@ export default function PlayerPaddle({
     );
   }
 
-  document.addEventListener("mousemove", (e) => {
-    setPaddle(setPlayerPaddlePosition((e.y / window.innerHeight) * 100)); //convert from px to vh
+  useEffect(() => {
+    document.addEventListener("mousemove", (e) => {
+      setPaddle(setPlayerPaddlePosition((e.y / window.innerHeight) * 100)); //convert from px to vh
+    });
   });
 
   return (

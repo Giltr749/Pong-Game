@@ -1,6 +1,8 @@
 import mysql from 'mysql';
+import bcrypt from 'bcrypt';
 
-var con = mysql.createConnection({
+
+export var con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'password',
@@ -38,5 +40,16 @@ export function highScore(id, callback) {
     var getNickname = `SELECT * FROM scores WHERE nickname = (SELECT nickname FROM users WHERE id = '${id}') ORDER BY score DESC LIMIT 1`;
     con.query(getNickname, (err, res) => {
         return callback(res);
+    });
+}
+
+export function login(user, callback) {
+
+    const getUser = `SELECT * FROM users WHERE nickname ='${user.nickname}';`;
+    con.query(getUser, (err, res) => {
+        bcrypt.compareSync(user.password, res[0].password, (err, result) => {
+            console.log(result);    
+            callback(result);
+        });
     });
 }

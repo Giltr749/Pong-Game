@@ -2,8 +2,12 @@ import bcrypt from 'bcrypt';
 
 const saltRounds = 10;
 
-function encryptPass(password) {
-    return bcrypt.hashSync(password, saltRounds);
+export async function encryptPass(password) {
+    return await bcrypt.hash(password, saltRounds);
 }
 
-export default encryptPass;
+// export async function decryptPass(password, hash, callback) {
+//     return await bcrypt.compare(password, hash, (err, res)=>{
+//         callback(res);
+//     });
+// }

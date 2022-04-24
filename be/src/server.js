@@ -1,10 +1,13 @@
 import express from 'express';
 import mysql from 'mysql';
-import { lastScore, newUser, highScore } from './db_connection.js';
+import { lastScore, newUser, highScore, login } from './db_connection.js';
 import { newScore } from './db_connection.js';
 import bodyParser from 'body-parser';
 import { nanoid } from 'nanoid';
-import encryptPass from './middleware/passwords.js';
+import { encryptPass } from './middleware/passwords.js';
+import { con } from './db_connection.js';
+import bcrypt from 'bcrypt';
+
 
 const jsonParser = bodyParser.json();
 const app = express();
@@ -33,10 +36,30 @@ app.get('/lastScore/:id', jsonParser, (req, res) => {
     });
 });
 
-app.get('/highScore/:id', (req, res) => {
+app.get('/highScore/:id', jsonParser, (req, res) => {
     highScore(req.params.id, (result) => {
         res.send(result);
     });
+});
+
+app.post('/login', jsonParser, async (req, res) => {
+
+    const getUser = `SELECT * FROM users WHERE nickname ='${req.body.nickname}';`;
+
+    con.query(getUser, async (err, result) => {
+        if (err) send(err);
+
+        bcrypt.compare(req.body.password, result[0].password, (err, checkRes) => {
+
+            if (checkRes) {
+                res.send(req.body.nickname);
+            }
+            else {
+                res.status(400).send('Nickname or password incorrect.')
+            }
+        });
+    });
+
 });
 
 app.listen(PORT, () => {

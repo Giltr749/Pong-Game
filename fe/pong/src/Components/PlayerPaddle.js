@@ -4,7 +4,6 @@ import { useEffect } from "react";
 export default function PlayerPaddle({
   playerPaddlePosition,
   setPlayerPaddlePosition,
-  movePlayer,
 }) {
   useEffect(() => {
     const getPaddle = getComputedStyle(
@@ -20,15 +19,8 @@ export default function PlayerPaddle({
   }
 
   document.addEventListener("mousemove", (e) => {
-    //convert from px to vh
-    setPaddle(setPlayerPaddlePosition((e.y / window.innerHeight) * 100));
+    setPaddle(setPlayerPaddlePosition((e.y / window.innerHeight) * 100)); //convert from px to vh
   });
-
-  // const handleMouse = (e) => {
-  //   setPaddle(setPlayerPaddlePosition(e));
-  //   console.log(e.clientY);
-  // };
-  // console.log(playerPaddlePosition);
 
   return (
     <div>

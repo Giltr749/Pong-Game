@@ -106,6 +106,12 @@ export default function Ball({
 
       //===== Game End =====//
 
+      let user = localStorage.getItem('user');
+
+      async function subScore (playerScore, user) {
+        const response = await fetch ('http://')
+      }
+
       let navigate = useNavigate();
 
       if (computerScore >= 3) {

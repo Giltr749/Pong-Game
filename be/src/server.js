@@ -20,8 +20,10 @@ app.post('/signup', jsonParser, async (req, res) => {
     try {
         req.body.id = nanoid(5);
         req.body.password = encryptPass(req.body.password);
-        await newUser(req.body);
-        res.send('done');
+        await newUser(req.body, (result) =>{
+            res.send(result);
+        });
+        // res.send('done');
     }
     catch (err) {
         res.send(err);

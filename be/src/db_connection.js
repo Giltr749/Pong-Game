@@ -9,20 +9,26 @@ export var con = mysql.createConnection({
     database: "Pong"
 });
 
-export async function newUser(user) {
+export async function newUser(user, callback) {
 
-    var insertUser = "INSERT INTO users (id, email, password , fname, lname, nickname) VALUES ?";
-    var values = [[user.id, user.email, user.password, user.fname, user.lname, user.nickname]];
-    try {
-        con.query(insertUser, [values], (err, res) => {
-            if (err) throw(err);
-            console.log('done');
-        });
-    }
-    catch(err) {
-       throw err;
-    }
-    
+    const getUser = `SELECT * FROM users WHERE nickname = '${user.nickname}'`;
+
+    con.query(getUser, (err, res) => {
+        if (res.length > 0)
+            callback('User already exists');
+
+        else {
+            const insertUser = "INSERT INTO users (id, email, password , fname, lname, nickname) VALUES ?";
+            const values = [[user.id, user.email, user.password, user.fname, user.lname, user.nickname]];
+            con.query(insertUser, [values], (err, res) => {
+                if (err) throw (err);
+                callback('done');
+            }
+            );
+        }
+    });
+
+
 }
 
 export function newScore(score) {

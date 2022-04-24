@@ -7,21 +7,24 @@ import { nanoid } from 'nanoid';
 import { encryptPass } from './middleware/passwords.js';
 import { con } from './db_connection.js';
 import bcrypt from 'bcrypt';
+import cors from 'cors';
 
 
 const jsonParser = bodyParser.json();
 const app = express();
 const PORT = 8080;
 
-app.post('/signup', jsonParser, (req, res) => {
+app.use(cors());
+
+app.post('/signup', jsonParser, async (req, res) => {
     try {
         req.body.id = nanoid(5);
         req.body.password = encryptPass(req.body.password);
-        newUser(req.body);
+        await newUser(req.body);
         res.send('done');
     }
     catch (err) {
-        res.senf(err);
+        res.send(err);
     }
 });
 

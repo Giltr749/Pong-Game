@@ -23,6 +23,7 @@ export default function Ball({
   const navigate = useRef(useNavigate());
   const [mod, setMod] = useState(1);
   const [count, setCount] = useState(0);
+  const [color, setColor] = useState(0);
 
   //getting variables from css
   useEffect(() => {
@@ -58,7 +59,7 @@ export default function Ball({
   }
 
   function setHue(time) {
-    document.documentElement.style.setProperty("--hue", 2);
+    document.documentElement.style.setProperty("--hue", color);
   }
 
   useEffect(() => {
@@ -141,7 +142,13 @@ export default function Ball({
         setMod(modDecrease);
         setCount(0);
       }
-      setHue(mod);
+
+      //===== Color Change =====//
+
+      let colorIncrease = color + 1;
+      setColor(colorIncrease);
+      setHue(color);
+
     }, 30 * mod);
     return () => clearInterval(interval);
   });

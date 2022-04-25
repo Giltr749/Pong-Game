@@ -102,7 +102,9 @@ const navigation = useRef(useNavigate());
         setDeltaX(deltaX*-1);
       }
       if (positionX <= 98.5 && positionX >= 98  && positionY < playerPaddlePosition+5 && positionY > playerPaddlePosition-5) {
-        console.log('bounce');
+        console.log('nice');
+        let pScoreIncrease = playerScore + 1;
+        setPlayerScore(pScoreIncrease);
         let xDecrease = positionX - 1;
         setPositionX(xDecrease);
         setX(xDecrease);
@@ -120,7 +122,7 @@ const navigation = useRef(useNavigate());
       let countIncrease = count + 1;
       setCount(countIncrease);
       if (count >= 15){
-        let modDecrease = mod - 0.01;
+        let modDecrease = mod - 0.005;
         setMod(modDecrease);
         setCount(0);
       }
@@ -132,7 +134,7 @@ const navigation = useRef(useNavigate());
 
   useEffect(() => {
     reset();
-  }, [playerScore, computerScore]);
+  }, [computerScore]);
 
   return (
     <div>

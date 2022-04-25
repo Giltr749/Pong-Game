@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import "./GameOver.css"
 
 function GameOver({
-    playerScore
+    playerScore, setPlayerScore
 }) {
         
     const navigate = useRef(useNavigate());
 
     function handleClick() {
+        setPlayerScore(0);
         navigate.current('/pong');
     }
 

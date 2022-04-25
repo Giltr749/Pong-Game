@@ -15,7 +15,7 @@ export default function App() {
         <Route index element={<Login />} />
         <Route path="/pong" element={<PingPongPage playerScore={playerScore} setPlayerScore={setPlayerScore} />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/gameover" element={<GameOver playerScore={playerScore}/>}/>
+        <Route path="/gameover" element={<GameOver playerScore={playerScore} setPlayerScore={setPlayerScore}/>}/>
       </Routes>
     </div>
   );

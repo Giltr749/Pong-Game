@@ -24,7 +24,7 @@ export default function Ball({
   const [mod, setMod] = useState(1);
   const [count, setCount] = useState(0);
 
-  //getting current x variable
+  //getting variables from css
   useEffect(() => {
     const getX = getComputedStyle(document.documentElement).getPropertyValue(
       "--x"
@@ -58,7 +58,7 @@ export default function Ball({
   }
 
   function setHue(time) {
-    document.documentElement.style.setProperty("--hue", time);
+    document.documentElement.style.setProperty("--hue", 2);
   }
 
   useEffect(() => {
@@ -141,6 +141,7 @@ export default function Ball({
         setMod(modDecrease);
         setCount(0);
       }
+      setHue(mod);
     }, 30 * mod);
     return () => clearInterval(interval);
   });

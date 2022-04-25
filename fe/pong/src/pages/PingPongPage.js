@@ -6,14 +6,16 @@ import Ball from "../Components/Ball";
 import Score from "../Components/Score";
 
 //update loop
-export default function PingPongPage() {
+export default function PingPongPage({
+  playerScore,setPlayerScore
+}) {
   const [positionX, setPositionX] = useState(50);
   const [positionY, setPositionY] = useState(50);
   const [deltaX, setDeltaX] = useState(0.5);
   const [deltaY, setDeltaY] = useState(0.5);
   const [playerPaddlePosition, setPlayerPaddlePosition] = useState(50);
   const [computerPaddlePosition, setComputerPaddlePosition] = useState(50);
-  const [playerScore, setPlayerScore] = useState(0);
+  // const [playerScore, setPlayerScore] = useState(0);
   const [computerScore, setComputerScore] = useState(0);
   // console.log(positionY);
   // console.log(deltaY);

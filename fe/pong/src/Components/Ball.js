@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +21,8 @@ export default function Ball({
   setComputerPaddlePosition,
 }) {
 
-  // const [test, setTest] = useState(playerScore);
+  const [done, setDone] = useState(false);
+  const navigate = useRef(useNavigate());
 
   //getting current x variable
   useEffect(() => {
@@ -41,6 +42,8 @@ export default function Ball({
     setPlayerPaddlePosition(50);
     setComputerPaddlePosition(50);
   };
+
+const navigation = useRef(useNavigate());
 
   //moving the ball on the x axis
   function setX(position) {
@@ -80,11 +83,12 @@ export default function Ball({
 
       if (positionX < 1) {
         console.log("score");
-        setComputerScore(computerScore + 1);
+        let pScoreIncrease = playerScore + 1;
+        setPlayerScore(pScoreIncrease + 1);
       } else if (positionX > 99) {
         console.log("score");
-        let scoreIncrease = playerScore + 1
-        setPlayerScore(scoreIncrease);
+        let cScoreIncrease = computerScore + 1
+        setComputerScore(cScoreIncrease);
       }
 
       //===== PADDLE HIT =====//
@@ -105,22 +109,14 @@ export default function Ball({
       }
 
       //===== Game End =====//
-
-      let user = localStorage.getItem('user');
-
-      async function subScore (playerScore, user) {
-        const response = await fetch ('http://')
-      }
-
-      let navigate = useNavigate();
-
+     
       if (computerScore >= 3) {
-        navigate('/')
+        navigate.current('/gameover');
       }
-
     }, 30);
     return () => clearInterval(interval);
   });
+
 
   useEffect(() => {
     reset();

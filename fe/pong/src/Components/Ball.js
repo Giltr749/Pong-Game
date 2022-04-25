@@ -21,8 +21,9 @@ export default function Ball({
   setComputerPaddlePosition,
 }) {
 
-  const [done, setDone] = useState(false);
   const navigate = useRef(useNavigate());
+  const [mod, setMod] = useState(1);
+  const [count, setCount] = useState(0);
 
   //getting current x variable
   useEffect(() => {
@@ -113,7 +114,18 @@ const navigation = useRef(useNavigate());
       if (computerScore >= 3) {
         navigate.current('/gameover');
       }
-    }, 30);
+
+      //===== Speedup =====//
+
+      let countIncrease = count + 1;
+      setCount(countIncrease);
+      if (count >= 15){
+        let modDecrease = mod - 0.01;
+        setMod(modDecrease);
+        setCount(0);
+      }
+
+    }, (30*mod));
     return () => clearInterval(interval);
   });
 

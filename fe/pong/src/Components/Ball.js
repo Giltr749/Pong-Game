@@ -97,11 +97,11 @@ export default function Ball({
     //===== SCORE =====//
 
     if (positionX < 1) {
-      console.log("score");
+      // console.log("score");
       let pScoreIncrease = playerScore + 1;
-      setPlayerScore(pScoreIncrease + 1);
+      setPlayerScore(pScoreIncrease);
     } else if (positionX > 99) {
-      console.log("score");
+      // console.log("score");
       let cScoreIncrease = computerScore + 1;
       setComputerScore(cScoreIncrease);
     }
@@ -114,7 +114,7 @@ export default function Ball({
       positionY < computerPaddlePosition + 5 &&
       positionY > computerPaddlePosition - 5
     ) {
-      console.log("bounce");
+      // console.log("bounce");
       let xIncrease = positionX + 1;
       setPositionX(xIncrease);
       setX(xIncrease);
@@ -126,7 +126,7 @@ export default function Ball({
       positionY < playerPaddlePosition + 5 &&
       positionY > playerPaddlePosition - 5
     ) {
-      console.log("nice");
+      // console.log("nice");
       let pScoreIncrease = playerScore + 1;
       setPlayerScore(pScoreIncrease);
       let xDecrease = positionX - 1;
@@ -158,80 +158,8 @@ export default function Ball({
     setHue(color);
   }
 
-<<<<<<< HEAD
-      //===== SCORE =====//
-
-      if (positionX < 1) {
-        console.log("score");
-        let pScoreIncrease = playerScore + 1;
-        setPlayerScore(pScoreIncrease + 1);
-      } else if (positionX > 99) {
-        console.log("score");
-        let cScoreIncrease = computerScore + 1;
-        setComputerScore(cScoreIncrease);
-      }
-
-      //===== PADDLE HIT =====//
-
-      if (
-        positionX >= 2 &&
-        positionX <= 2.5 &&
-        positionY < computerPaddlePosition + 5 &&
-        positionY > computerPaddlePosition - 5
-      ) {
-        console.log("bounce");
-        let xIncrease = positionX + 1;
-        setPositionX(xIncrease);
-        setX(xIncrease);
-        setDeltaX(deltaX * -1);
-      }
-      if (
-        positionX <= 98.5 &&
-        positionX >= 98 &&
-        positionY < playerPaddlePosition + 5 &&
-        positionY > playerPaddlePosition - 5
-      ) {
-        console.log("nice");
-        let pScoreIncrease = playerScore + 1;
-        setPlayerScore(pScoreIncrease);
-        let xDecrease = positionX - 1;
-        setPositionX(xDecrease);
-        setX(xDecrease);
-        setDeltaX(deltaX * -1);
-      }
-
-      //===== Game End =====//
-
-      if (computerScore >= 3) {
-        navigate.current("/gameover");
-      }
-
-      //===== Speedup =====//
-
-      let countIncrease = count + 1;
-      setCount(countIncrease);
-      if (count >= 15) {
-        let modDecrease = mod - 0.005;
-        setMod(modDecrease);
-        setCount(0);
-      }
-
-      //===== Color Change =====//
-
-      let colorIncrease = color + 1;
-      setColor(colorIncrease);
-      setHue(color);
-
-      //===== Player Movement =====//
-
-
-
-    }, 30 * mod);
-    return () => clearInterval(interval);
-=======
   useEffect(() => {
     window.requestAnimationFrame(update);
->>>>>>> b8dc2d23c4af92a32cf3ba921ff36f92d5089821
   });
 
   useEffect(() => {

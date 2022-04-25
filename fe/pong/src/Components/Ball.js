@@ -25,6 +25,13 @@ export default function Ball({
   const [count, setCount] = useState(0);
   const [color, setColor] = useState(0);
 
+  function setPaddle(position) {
+    document.documentElement.style.setProperty(
+      "--position-player",
+      playerPaddlePosition
+    );
+  }
+
   //getting variables from css
   useEffect(() => {
     const getX = getComputedStyle(document.documentElement).getPropertyValue(
@@ -48,6 +55,7 @@ export default function Ball({
   };
 
   const navigation = useRef(useNavigate());
+  
 
   //moving the ball on the x axis
   function setX(position) {
@@ -148,6 +156,10 @@ export default function Ball({
       let colorIncrease = color + 1;
       setColor(colorIncrease);
       setHue(color);
+
+      //===== Player Movement =====//
+
+
 
     }, 30 * mod);
     return () => clearInterval(interval);
